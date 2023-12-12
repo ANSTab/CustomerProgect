@@ -4,12 +4,14 @@ import opennlp.tools.langdetect.Language;
 import opennlp.tools.langdetect.LanguageDetector;
 import opennlp.tools.langdetect.LanguageDetectorME;
 import opennlp.tools.langdetect.LanguageDetectorModel;
-import opennlp.tools.util.*;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -18,7 +20,7 @@ import java.util.List;
 import static enums.Language.*;
 
 
-public class TranslatorHelper {
+public class TranslateHelper {
 
     public static List<enums.Language> languageList = Arrays.asList(CS, DE, EN, ES, FR, HR, IT, PT, TE, UK, ZH);
 
@@ -42,4 +44,33 @@ public class TranslatorHelper {
                 .orElseThrow(() -> new NullPointerException(String.format("There are no '%s' code in Language enum", translatorCode)))
                 .getName();
     }
+
+    public static String translateTextToAnotherLanguage(String text, String sourceLang, String targetLang) throws IOException {
+        String apiKey = new PropertyReadHelper().readFromPropertyFile("translaterApiKey");
+        return translateText(apiKey, text, sourceLang, targetLang);
+    }
+
+    private static String translateText(String apiKey, String text, String sourceLang, String targetLang) throws IOException {
+        String url = "https://api.mymemory.translated.net/get?q=" + URLEncoder.encode(text, "UTF-8") +
+                "&langpair=" + sourceLang + "|" + targetLang + "&key=" + apiKey;
+
+        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+        connection.setRequestMethod("GET");
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+
+            return extractedTranslationFromJson(response.toString());
+        }
+    }
+
+    private static String extractedTranslationFromJson(String jsonResponse) {
+        return JsonParserHelper.extractedTranslationFromJson(jsonResponse);
+
+    }
 }
+

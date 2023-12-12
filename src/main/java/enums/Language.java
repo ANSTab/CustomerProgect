@@ -2,19 +2,19 @@ package enums;
 
 public enum Language {
 
-    CS("cs", "Czech"),
-    DE("de", "German"),
-    EN("en", "English"),
-    ES("es", "Spanish"),
-    FR("fr", "French"),
-    HR("hr", "Croatian"),
-    IT("it", "Italian"),
-    PT("pt", "Portuguese"),
-    TE("te", "Telugu"),
-    UK("uk", "Ukrainian"),
-    ZH("zh", "Chinese");
+    CS("cs", "Czech", "ell"),
+    DE("de", "German", "deu"),
+    EN("en", "English", "eng"),
+    ES("es", "Spanish", "spa"),
+    FR("fr", "French", "fra"),
+    HR("hr", "Croatian", "hrv"),
+    IT("it", "Italian", "ita"),
+    PT("pt", "Portuguese", "por"),
+    TE("te", "Telugu", "tel"),
+    UK("uk", "Ukrainian", "ukr"),
+    ZH("zh", "Chinese", "zho");
 
-    String label, name;
+    String label, name, isoCode;
 
     public String getName() {
         return name;
@@ -24,9 +24,15 @@ public enum Language {
         return label;
     }
 
-    Language(String label, String name) {
+    public String getIsoCode() {
+        return isoCode;
+    }
+
+    Language(String label, String name, String isoCode) {
         this.label = label;
         this.name = name;
+        this.isoCode = isoCode;
+
     }
 
 
