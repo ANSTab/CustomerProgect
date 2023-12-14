@@ -1,4 +1,4 @@
-package base_test;
+package ui_tests.base_test;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;

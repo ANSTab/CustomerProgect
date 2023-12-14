@@ -1,4 +1,4 @@
-package login_validation;
+package ui_tests.home_page_and_login_validation;
 
 import enums.Language;
 import lombok.SneakyThrows;
@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import tools.TranslateHelper;
 
-import java.lang.reflect.Method;
 import java.util.stream.Stream;
 
 import static enums.Language.*;

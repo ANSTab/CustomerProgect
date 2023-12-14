@@ -21,4 +21,8 @@ public class Work {
     private String ia;
     private boolean publicScan;
     private boolean hasFullText;
+
+    public String getKey() {
+        return this.key.replace("/works/", "");
+    }
 }

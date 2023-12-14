@@ -32,7 +32,6 @@ public enum Language {
         this.label = label;
         this.name = name;
         this.isoCode = isoCode;
-
     }
 
 

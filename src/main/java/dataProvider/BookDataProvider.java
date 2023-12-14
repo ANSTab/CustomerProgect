@@ -14,7 +14,7 @@ public class BookDataProvider {
 
     @Step("Get Works List")
     public static Book getBookInfoByKey(String workKey) {
-        RestAssured.baseURI = String.format(RestAssured.baseURI = "https://openlibrary.org/works/%s.json", workKey);
+      RestAssured.baseURI =  String.format("https://openlibrary.org/works/%s.json", workKey);
         Response response = RestAssured.get();
         String json = response.asString();
         int statusCode = response.getStatusCode();

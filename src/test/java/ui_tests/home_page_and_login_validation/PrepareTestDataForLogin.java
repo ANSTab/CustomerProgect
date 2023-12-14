@@ -1,6 +1,6 @@
-package login_validation;
+package ui_tests.home_page_and_login_validation;
 
-import base_test.BaseTest;
+import ui_tests.base_test.BaseTest;
 import org.junit.jupiter.api.BeforeAll;
 import pages.BasePage;
 import pages.HomePage;

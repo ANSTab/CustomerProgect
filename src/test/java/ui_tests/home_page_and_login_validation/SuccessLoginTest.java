@@ -1,15 +1,14 @@
-package login_validation;
+package ui_tests.home_page_and_login_validation;
 
+import enums.BrowseMenuItem;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import pages.MyBooksPage;
 
 import static pages.MyBooksPage.MY_BOOKS_HEADER;
 
-public class SuccessLoginTest extends  PrepareTestDataForLogin{
+public class SuccessLoginTest extends PrepareTestDataForLogin {
 
-@Test
+    @Test
     public void verifyUserLoginSuccess() {
         myBooksPage = homePage
                 .loginAsUserAndOpenProfilePage();

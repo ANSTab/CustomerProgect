@@ -16,16 +16,12 @@ public class WorkDataProvider {
 
     @Step("Get Works List")
     public static List<Work> getWorksList() {
-        RestAssured.baseURI = "https://openlibrary.org/subjects/works.json?limit=1000"; // Замініть на свій URL
+        RestAssured.baseURI = "https://openlibrary.org/subjects/works.json";
         Response response = RestAssured.get();
         int statusCode = response.getStatusCode();
         System.out.println("Статус-код: " + statusCode);
-        List<Work> books = parseJsonToWorks(response.getBody().asString());
-        for (Work b : books) {
-            String newKey = b.getKey().replace("/works/", "");
-            b.setKey(newKey);
-        }
-        return books;
+
+        return parseJsonToWorks(response.getBody().asString());
     }
 
     @Step("Parse Json To Works")

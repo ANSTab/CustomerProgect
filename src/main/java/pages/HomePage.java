@@ -1,10 +1,12 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
+import enums.BrowseMenuItem;
 import enums.Language;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +14,9 @@ import org.openqa.selenium.WebElement;
 import tools.WebElementUtils;
 import user.User;
 
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -22,6 +27,7 @@ public class HomePage extends BasePage {
     private final SelenideElement signInButton = $x("//*[@class='btn primary']");
     private final SelenideElement translateIcon = $x("//*[@class='translate-icon']");
     private final SelenideElement languageSection = $x("//*[@class='language-dropdown-component']");
+    private final SelenideElement browseMenuDropdownButton = $x("//span[text()='Menu']//following-sibling::img[@class='down-arrow']");
     private final SelenideElement donationBanner = Selenide.$(By.id("donato"));
 
     public MyBooksPage loginAsUserAndOpenProfilePage() {
@@ -41,6 +47,31 @@ public class HomePage extends BasePage {
         logger.info("Open Profile page");
         WebElementUtils.shouldBeVisible(profileIcon).click();
         return new ProfilePage();
+    }
+
+    public HomePage openBrowseDropDownMenu() {
+        logger.info("Open 'Browse' menu");
+        WebElementUtils.shouldBeVisible(browseMenuDropdownButton).click();
+        return this;
+    }
+
+    public void openBrowseMenuItem(BrowseMenuItem item) {
+        openBrowseDropDownMenu();
+        Selenide.$(By.xpath(String.format(" //*[contains(text(),'%s')]", item.getName()))).click();
+    }
+
+    @Step("Get Browse Menu Items List")
+    public List<String> getBrowseMenuItemsList() {
+        openBrowseDropDownMenu();
+        ElementsCollection collection = Selenide.$$(By.xpath("//*[@class='dropdown-menu browse-dropdown-menu']//*[contains(@data-ol-link-track,'MainNav')]"));
+        List<String> list = new ArrayList<>();
+        for (SelenideElement e : collection) {
+            if (!e.getText().equals("")) {
+                list.add(e.getText());
+            }
+        }
+
+        return list;
     }
 
     public HomePage changeLanguageOfSite(Language language) {

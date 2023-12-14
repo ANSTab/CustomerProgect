@@ -1,4 +1,4 @@
-package login_validation;
+package api_tests;
 
 import ApiObject.Work;
 import dataProvider.BookDataProvider;

@@ -35,7 +35,7 @@
                         </property>
                     </properties>
                     <includes>
-<!--                        <include>**/*Test.java</include>--> <!-- START ALL Test Classes with suffix 'Test'-->
+<!--                        <include>**/*Test.java</include> &lt;!&ndash; START ALL Test Classes with suffix 'Test'&ndash;&gt;-->
                         <include>JUnit5TestSuiteExample.java</include> <!-- START ALL Test Classes in TEST Suite 'JUnit5TestSuiteExample'-->
                     </includes>
                     <argLine>

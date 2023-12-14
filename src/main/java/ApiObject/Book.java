@@ -1,7 +1,9 @@
 package ApiObject;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jdk.nashorn.internal.objects.annotations.Constructor;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.List;
 
@@ -26,6 +28,10 @@ public class Book {
     private List<String> subjectTimes;
     private Type type;
     private int revision;
+
+    public String getKey() {
+        return this.key.replace("/works/", "");
+    }
 }
 
 @Data
@@ -50,11 +56,6 @@ class Created {
 class AuthorRole {
     private Type type;
     private Author author;
-}
-
-@Data
-class Author {
-    private String key;
 }
 
 @Data
