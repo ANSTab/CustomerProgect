@@ -7,7 +7,7 @@ import java.util.Properties;
 public class PropertyReadHelper {
 
     public String readFromPropertyFile(String propertiesKey) {
-        String filePath = "/Users/oleksii/MyProject/MyProject v2/src/main/resources/myproperties.properties";
+        String filePath = "/Users/oleksii/MyProject/MyProject v2/src/main/resources/config/config.properties";
         Properties properties = new Properties();
 
         try {

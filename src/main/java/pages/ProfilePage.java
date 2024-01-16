@@ -1,23 +1,25 @@
 package pages;
 
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
-import tools.WebElementUtils;
+import com.microsoft.playwright.Page;
 
-import static com.codeborne.selenide.Selenide.$x;
+public class ProfilePage extends HomePage{
 
-public class ProfilePage extends HomePage {
+    private Page page;
 
-    private final SelenideElement profileTitle = $x("//*[@class='account-content']//*[text()='Мій профіль']");
-
-    public boolean isPhoneNumberShown(String number) {
-        logger.info("Is Phone Number Shown");
-        return Selenide.$(By.xpath(String.format("//*[contains(text(),'%s')]", number))).isDisplayed();
+   public ProfilePage(Page page) {
+       super(page);
+       this.page = page;
     }
 
+        private final String profileTitle = "//*[@class='account-content']//*[text()='Мій профіль']";
+//
+//    public boolean isPhoneNumberShown(String number) {
+//        logger.info("Is Phone Number Shown");
+//        return Selenide.$(By.xpath(String.format("//*[contains(text(),'%s')]", number))).isDisplayed();
+//    }
+//
     @Override
     protected void waitUntilLoaded() {
-        WebElementUtils.shouldBeVisible(profileTitle);
+        page.waitForSelector(profileTitle);
     }
 }

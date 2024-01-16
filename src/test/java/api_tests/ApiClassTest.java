@@ -15,7 +15,7 @@ public class ApiClassTest {
     @Test
     public void sdfsf() {
         List<Work> books = WorkDataProvider.getWorksList();
-       String key =  books.get(0).getKey();
+        String key = books.get(0).getKey();
         BookDataProvider.getBookInfoByKey(key);
     }
 }
