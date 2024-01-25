@@ -1,6 +1,7 @@
 package factory;
 
 import com.microsoft.playwright.*;
+import tools.Constants;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,13 +13,9 @@ import java.util.Base64;
 import java.util.Properties;
 
 public class PlaywrightFactory {
-    //    Playwright playwright;
-//    Browser browser;
-//    BrowserContext browserContext;
-//    Page page;
     Properties prop;
 
-    String configPropertiesPath = "/Users/oleksii/MyProject/MyProject v2/src/main/resources/config/config.properties";
+    String configPropertiesPath = Constants.FILE_PATH;
 
     private static ThreadLocal<Browser> tlBrowser = new ThreadLocal<>();
     private static ThreadLocal<BrowserContext> tlBrowserContext = new ThreadLocal<>();
@@ -44,8 +41,6 @@ public class PlaywrightFactory {
     public Page initBrowser(Properties prop) {
         String browserName = prop.getProperty("browser").trim();
         System.out.println("browser name is : " + browserName);
-
-        // playwright = Playwright.create();
         tlPlaywright.set(Playwright.create());
 
         switch (browserName.toLowerCase()) {

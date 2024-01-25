@@ -1,5 +1,6 @@
 package tools;
 
+import io.qameta.allure.Step;
 import opennlp.tools.langdetect.Language;
 import opennlp.tools.langdetect.LanguageDetector;
 import opennlp.tools.langdetect.LanguageDetectorME;
@@ -50,6 +51,8 @@ public class TranslateHelper {
         return translateText(apiKey, text, sourceLang, targetLang);
     }
 
+
+    @Step ()
     private static String translateText(String apiKey, String text, String sourceLang, String targetLang) throws IOException {
         String url = "https://api.mymemory.translated.net/get?q=" + URLEncoder.encode(text, "UTF-8") +
                 "&langpair=" + sourceLang + "|" + targetLang + "&key=" + apiKey;

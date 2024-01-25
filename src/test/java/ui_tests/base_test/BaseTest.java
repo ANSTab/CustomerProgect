@@ -29,7 +29,7 @@ public class BaseTest {
 //    private static Browser browser;
 
     @ParameterizedTest
-    @ValueSource(strings = {"chrome"})
+    @ValueSource(strings = {"chromium"})
     public void setup(String browserName) {
         pf = new PlaywrightFactory();
         prop = pf.init_prop();

@@ -1,14 +1,10 @@
 package pages;
 
 import com.microsoft.playwright.ElementHandle;
-import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.impl.ElementHandleImpl;
 import enums.BrowseMenuItem;
 import enums.Language;
 import io.qameta.allure.Step;
-
-import tools.WebElementUtils;
 import user.User;
 
 import java.util.ArrayList;
@@ -19,31 +15,26 @@ import java.util.stream.Collectors;
 
 
 public class HomePage extends AbstractPage {
+
     protected static final Logger logger = LogManager.getLogManager().getLogger("");
     private Page page;
 
-    // 1. String Locators - OR
-//    private String search = "input[name='search']";
     private String search = "//input[@aria-label='Search']";
     private String searchIcon = "div#search button";
     private String searchPageHeader = "div#content h1";
     private String loginLink = "a:text('Login')";
     private String myAccountLink = "a[title='My Account']";
-    private final String donatiileIcon = "//*[@class='account__icon']";
     private final String signInButton = "//*[@class='btn primary']";
     private final String translateIcon = "//*[@class='translate-icon']";
     private final String languageSection = "//*[@class='language-dropdown-component']";
     private final String browseMenuDropdownButton = "//span[text()='Menu']//following-sibling::img[@class='down-arrow']";
     private final String loginButton = "//*[@class='hide-me']";
-
     private final String profileIcon = "//*[@class='account__icon']";
 
-    // 2. page constructor:
     public HomePage(Page page) {
         this.page = page;
     }
 
-    // 3. page actions/methods:
     public String getHomePageTitle() {
         String title = page.title();
         System.out.println("page title: " + title);
@@ -87,11 +78,6 @@ public class HomePage extends AbstractPage {
     @Override
     protected void waitUntilLoaded() {
         logger.info("Wait when header Banner will be visible");
-//        if (donationBanner.isDisplayed()) {
-//            Selenide.switchTo().frame(donationBanner);
-//            Selenide.$(By.xpath("//*[@id='banner-close-image-white']")).shouldBe(Condition.visible).click();
-//            Selenide.switchTo().defaultContent();
-//        }
     }
 
     public ProfilePage openProfilePage() {
@@ -142,16 +128,4 @@ public class HomePage extends AbstractPage {
         logger.info("Get text from 'Sign In' button");
         return page.waitForSelector(signInButton).innerText();
     }
-
-//    public static void switchToFrameByElement(WebDriver driver, WebElement frameElement) {
-//        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-//        jsExecutor.executeScript("arguments[0].scrollIntoView(true);", frameElement);
-//        driver.switchTo().frame(frameElement);
-//    }
-//
-//    public static void switchToMainFrame(WebDriver driver) {
-//        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-//        jsExecutor.executeScript("window.parent.document.getElementsByTagName('frame')[0].contentWindow.focus();");
-//        driver.switchTo().defaultContent();
-//    }
 }

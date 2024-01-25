@@ -14,9 +14,10 @@ public class SuccessLoginTest extends PrepareTestDataForLogin {
         List<ActivitiesRelatedToBooks> activitiesRelatedToBooks = Arrays.asList(ActivitiesRelatedToBooks.values());
         myBooksPage = homePage
                 .loginAsUserAndOpenProfilePage();
-        Assertions.assertTrue(myBooksPage.isMyBooksHeaderContainsProfileName(PROFILE_NAME), String.format("'%s' should be shown", PROFILE_NAME));
+
+        Assertions.assertTrue(myBooksPage.isMyBooksHeaderContainsProfileName(PROFILE_NAME), String.format(SHOULD_BE_SHOWN, PROFILE_NAME));
         activitiesRelatedToBooks.forEach(actions ->
-                Assertions.assertTrue(myBooksPage.isActivitiesRelatedToBooksShown(actions), String.format("'%s' should be shown", actions)));
+                Assertions.assertTrue(myBooksPage.isActivitiesRelatedToBooksShown(actions), String.format(SHOULD_BE_SHOWN, actions)));
         softAssertions.assertAll();
     }
 }

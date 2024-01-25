@@ -7,6 +7,6 @@ import user.User;
 public class PrepareTestDataForLogin extends BaseTest {
     protected static final String PROFILE_NAME = User.getProfileName();
     protected MyBooksPage myBooksPage;
-    protected String currentTestName;
     protected static final String SHOULD_BE_EQUAL = "'%s' should be equal '%s'";
+    protected static final String SHOULD_BE_SHOWN = "'%s' should be shown";
 }

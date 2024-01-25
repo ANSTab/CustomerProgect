@@ -3,10 +3,7 @@ package api_tests;
 import ApiObject.Work;
 import dataProvider.BookDataProvider;
 import dataProvider.WorkDataProvider;
-import io.restassured.RestAssured;
-import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
-import tools.RestAssuredUtils;
 
 import java.util.List;
 

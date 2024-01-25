@@ -9,5 +9,4 @@ import user.User;
 public class PrepareTestDataForSearchBook extends BaseTest {
     protected MyBooksPage myBooksPage;
     protected static final String SHOULD_BE_EQUAL = "'%s' should be equal '%s'";
-
 }

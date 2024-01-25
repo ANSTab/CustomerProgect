@@ -16,7 +16,6 @@ public class BookPage extends HomePage {
         return page.locator(titleLabel).innerText();
     }
 
-
     @Override
     protected void waitUntilLoaded() {
         page.waitForSelector("//*[@class='editionAbout']//*[@class='nav-bar work-menu']").isVisible();
